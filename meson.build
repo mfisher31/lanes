@@ -10,7 +10,7 @@ cc = meson.get_compiler('c')
 luadir = ''
 luacdir = ''
 
-lua_dep = dependency ('luajit', version: '> 2.1.0 and < 3.0.0', required: false)
+lua_dep = dependency ('luajit', version: ['>=2.1',  '<3.0'], required: false)
 
 if lua_dep.found()
     luadir = 'share' / 'lua' / '5.1'
