@@ -10,7 +10,7 @@ cc = meson.get_compiler('c')
 luadir = ''
 luacdir = ''
 
-lua_dep = dependency ('luajit', version: ['>=2.1',  '<3.0'], required: false)
+lua_dep = dependency ('luajit', version: ['>=2.1',  '<3.0'], required: true)
 
 if lua_dep.found()
     luadir = 'share' / 'lua' / '5.1'
@@ -50,8 +50,11 @@ lanes_source = '''
 '''.split()
 
 if host_machine.system() =='linux'
-    add_project_arguments ('-D_GNU_SOURCE', language: 'c')
-    add_project_arguments ('-Wno-unused-const-variable', language: 'c')
+    add_project_arguments ('''
+        -D_GNU_SOURCE
+        -Wno-unused-const-variable
+        -Wno-unused-variable
+    '''.split(), language: 'c')
 endif
 
 install_data('src/lanes.lua', install_dir: luadir)
