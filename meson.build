@@ -57,12 +57,13 @@ if host_machine.system() =='linux'
     '''.split(), language: 'c')
 endif
 
-install_data('src/lanes.lua', install_dir: luadir)
 shared_module ('core', lanes_source, 
     name_prefix: '',
     dependencies: [ lua_dep ],
     install: true,
     install_dir: luacdir / 'lanes')
+
+install_data('src/lanes.lua', install_dir: luadir)
 
 summary ('PATH', get_option('prefix') / luadir, section: 'Install')
 summary ('CPATH', get_option('prefix') / luacdir, section: 'Install')
