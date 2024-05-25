@@ -1,5 +1,5 @@
 project ('lanes', ['c'], 
-    version : '2.1', 
+    version : '3.17.0', 
     default_options : [
         'c_std=c99',
         'buildtype=release'
